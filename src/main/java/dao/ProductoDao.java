@@ -26,7 +26,7 @@ public class ProductoDao {
 	        resp="Producto Registrado!";
 	        
 	    }catch (Exception e) {
-	        JOptionPane.showMessageDialog(null, "No se puede registrar el Producto",
+	        JOptionPane.showMessageDialog(null, "No se puede registrar el Producto" + e,
 	                   "ERROR", JOptionPane.ERROR_MESSAGE);
 	    }
 	    return resp;

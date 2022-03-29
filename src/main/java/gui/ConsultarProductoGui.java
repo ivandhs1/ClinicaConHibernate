@@ -22,6 +22,7 @@ import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
 import aplicacion.Coordinador;
+import entidades.Producto;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -116,21 +117,38 @@ public class ConsultarProductoGui extends JDialog implements ActionListener{
 		txtIdProducto.setBounds(170, 20, 86, 20);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
-		
-		JLabel lblIdPersona = new JLabel("Id Persona: ");
-		lblIdPersona.setBounds(24, 67, 71, 14);
-		panel.add(lblIdPersona);
-		
-		txtIdPersona = new JTextField();
-		txtIdPersona.setColumns(10);
-		txtIdPersona.setBounds(89, 64, 86, 20);
-		panel.add(txtIdPersona);
+
 	}
 
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==btnBuscar) {
+			
+			Long idProducto = Long.parseLong(txtIdProducto.getText());
+			Producto miProducto = miCoordinador.consultarProducto(idProducto);
+			
+			if(miProducto!=null) {
+
+				txtNombre.setText(miProducto.getNombreProducto());
+				txtPrecio.setText(miProducto.getPrecioProducto()+"");
+				
+			}else {
+				JOptionPane.showMessageDialog(null, "Producto no existente");
+			}
+			
+		}else if(e.getSource()==btnCancelar) {
+			this.dispose();
+		}
+	}
+
+
+	public void limpiar() {
+		// TODO Auto-generated method stub
+		txtIdPersona.setText("");
+		txtIdProducto.setText("");
+		txtNombre.setText("");
+		txtPrecio.setText("");
 	}
 
 
