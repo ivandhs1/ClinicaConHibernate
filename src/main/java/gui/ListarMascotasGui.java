@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,6 +16,8 @@ import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
 import entidades.Mascota;
+import javax.swing.JTextArea;
+
 
 public class ListarMascotasGui extends JDialog {
 
@@ -24,6 +27,7 @@ public class ListarMascotasGui extends JDialog {
 	private JTable miTabla;
 	private JLabel titulo;
 	private JScrollPane miScrol;
+	private JTextArea txtMascotas;
 	
 	public ListarMascotasGui() {
 		setSize( 672, 449);
@@ -47,14 +51,22 @@ public class ListarMascotasGui extends JDialog {
 		miScrol.setBounds(10,80,630,247);
 		miPanel.add(miScrol);
 		
-		add(miPanel);
+		txtMascotas = new JTextArea();
+		miScrol.setViewportView(txtMascotas);
+		
+		getContentPane().add(miPanel);
+		txtMascotas.setEditable(false);
 	}
-
-	public void setCoordinador(Coordinador miCoordinador2) {
-		// TODO Auto-generated method stub
+	public void setCoordinador(Coordinador miCoordinador) {
 		this.miCoordinador = miCoordinador;
 	}
-
+	public void llenar() {
+		List<Mascota> listaMascotas = miCoordinador.consultarListaMascotas();
+		
+		for(Mascota mascota : listaMascotas) {
+			txtMascotas.setText(txtMascotas.getText()+mascota.toString());
+		}
+	}
 	
 
 }
