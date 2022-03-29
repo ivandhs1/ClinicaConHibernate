@@ -261,6 +261,12 @@ public class RegistrarPersonasGui extends JDialog implements ActionListener{
 		miPersona.setNacimiento(miNacimiento);
 		
 		String idNacimiento=miCoordinador.registrarPersona(miPersona);
+		
+		if(idNacimiento.equals("Persona Registrada!")) {
+			JOptionPane.showMessageDialog(null,"REGISTRO EXITOSO !!!");
+		}else {
+			JOptionPane.showMessageDialog(null, "Error en el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	public void registrar2() {

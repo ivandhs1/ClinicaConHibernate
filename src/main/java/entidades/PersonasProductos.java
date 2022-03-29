@@ -10,11 +10,13 @@ import aplicacion.Coordinador;
 @Entity
 @Table(name="personas_productos")
 public class PersonasProductos implements Serializable{
+	
     private static final long serialVersionUID = 1L;
-
+    
+    @Id
     @Column (name = "persona_id")
     private Long personaId;
-
+    @Id
     @Column (name = "producto_id")
     private Long productoId;
 
