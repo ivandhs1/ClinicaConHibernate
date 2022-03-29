@@ -2,14 +2,13 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,10 +21,13 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import aplicacion.Coordinador;
+import entidades.Persona;
 
-public class ConsultarPersonaGui extends JDialog implements ActionListener {
 
-	Coordinador miCoordinador;
+
+public class ConsultarPersonaGui extends JDialog implements ActionListener{
+
+	private Coordinador miCoordinador;
 	private final JPanel contentPanel = new JPanel();
 	JLabel lblDocumento, lblNombre, lblTelefono, lblProfesion, lblTipo, lblDatosNacimiento, lblFechaNacimiento,
 			lblCiudad, lblDepartamento, lblPais;
@@ -38,9 +40,9 @@ public class ConsultarPersonaGui extends JDialog implements ActionListener {
 		this.miCoordinador = miCoordinador;
 	}
 
-	public ConsultarPersonaGui(VentanaPrincipal miVentanaPrincipal, boolean modal) {
+	public ConsultarPersonaGui(VentanaPrincipal miIndex, boolean modal) {
 		// TODO Auto-generated constructor stub
-		super(miVentanaPrincipal, modal);
+		super(miIndex, modal);
 		setSize(622, 449);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
@@ -191,10 +193,34 @@ public class ConsultarPersonaGui extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		if (e.getSource() == btnBuscar) {
+			
+		    Persona p = miCoordinador.consultarPersona(Long.parseLong(txtDocumento.getText()));
+		    if (p != null) {
+		    	txtNombre.setText(p.getNombre());
+				txtProfesion.setText(p.getProfesion());
+				txtTelefono.setText(p.getTelefono());
+				txtTipo.setText(p.getTipo() + "");
+				txtCiudad.setText(p.getNacimiento().getCiudadNAcimiento());
+				txtDepartamento.setText(p.getNacimiento().getDepartamentoNacimiento());
+				txtPais.setText(p.getNacimiento().getPaisNacimiento());
+				txtDia.setText(p.getNacimiento().getFechaNacimeinto().getDayOfMonth() + "");
+				txtMes.setText(p.getNacimiento().getFechaNacimeinto().getMonthValue() + "");
+				txtAnnio.setText(p.getNacimiento().getFechaNacimeinto().getYear() + "");
+
+		    } else {
+		        System.out.println();
+		        System.out.println("No se encontró la mascota");
+		    }
+		    System.out.println();
+		}
 	}
 
+	public void setMiCoordinador(Coordinador miCoordinador) {
+		this.miCoordinador=miCoordinador;
+		
+	}
 	
 
 }

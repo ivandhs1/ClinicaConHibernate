@@ -34,20 +34,20 @@ public class Coordinador {
 	GestionMascotas miGestionMascotas;
 	GestionPersonas miGestionPersonas;
 	GestionProductos miGestionProductos;
-	
+
 	VentanaPrincipal miVentanaPrincipal;
 	RegistrarPersonasGui miRegistrarPersonasGui;
 	ConsultarPersonaGui miConsultarPersonasGui;
 	ListarPersonas miListarPersonasGui;
 	ActualizarPersonaGui miActualizarPersonasGui;
 	EliminarPersonaGui miEliminarPersonasGui;
-	
+
 	RegistrarMascotasGui miRegistrarMascotasGui;
 	ConsultarMascotaGui miConsultarMascotaGui;
 	ListarMascotasGui miListarMascotasGui;
 	ActualizarMascotaGui miActualizarMascotas;
 	EliminarMascotaGui miEliminarMascotaGui;
-	
+
 	RegistrarProductosGui miRegistrarProductosGui;
 	ConsultarProductoGui miConsultarProductosGui;
 	ListarProductos miListarProductosGui;
@@ -55,7 +55,6 @@ public class Coordinador {
 	EliminarProducto miEliminarProductosGui;
 	ComprarProductoGui miComprarProductosGui;
 
-	
 	public void setJPA(JPAUtil miJPA) {
 		// TODO Auto-generated method stub
 		this.miJPA = miJPA;
@@ -81,12 +80,10 @@ public class Coordinador {
 		this.miMascotaDao = miMascotaDao;
 	}
 
-
 	public void setPersonaDao(PersonaDao miPersonaDao) {
 		// TODO Auto-generated method stub
 		this.miPersonaDao = miPersonaDao;
 	}
-
 
 	public void setProductoDao(ProductoDao miProductoDao) {
 		// TODO Auto-generated method stub
@@ -127,7 +124,7 @@ public class Coordinador {
 		// TODO Auto-generated method stub
 		this.miRegistrarMascotasGui = miRegistrarMascotasGui;
 	}
-	
+
 	public void setConsultarMascotasGui(ConsultarMascotaGui miConsultarMascotasGui) {
 		// TODO Auto-generated method stub
 		this.miConsultarMascotaGui = miConsultarMascotasGui;
@@ -199,19 +196,18 @@ public class Coordinador {
 		miConsultarProductosGui.setVisible(true);
 		miConsultarProductosGui.limpiar();
 	}
-	
+
 	public void mostrarVentanaActualizarProducto() {
 		// TODO Auto-generated method stub
 		miActualizarProductoGui.setVisible(true);
 		miActualizarProductoGui.vaciar();
 	}
-	
+
 	public void mostrarVentanaEliminarProductos() {
 		// TODO Auto-generated method stub
 		miEliminarProductosGui.setVisible(true);
 	}
 
-	
 	public String registrarProducto(Producto miProducto) {
 		// TODO Auto-generated method stub
 		return miProductoDao.registrarProducto(miProducto);
@@ -242,11 +238,9 @@ public class Coordinador {
 		miComprarProductosGui.setVisible(true);
 	}
 
+	public Persona consultarPersona(Long idPersona) {
 
-
-	
-	
-
-
+		return miPersonaDao.consultarPersona(idPersona);
+	}
 
 }
