@@ -186,6 +186,11 @@ public class Coordinador {
 		miRegistrarPersonasGui.setVisible(true);
 	}
 
+	
+	public Persona consultarPersona(Long idPersona) {
+		
+		return miPersonaDao.consultarPersona(idPersona);
+	}
 
 
 }
