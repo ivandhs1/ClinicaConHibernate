@@ -9,10 +9,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	<properties>
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
-		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/bd_hibernate1?
+		<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3310/bd_hibernate1?
 		useUnicode=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC"/>
 		<property name="javax.persistence.jdbc.user" value="root"/>
-		<property name="javax.persistence.jdbc.password" value="Sena1234"/>
+		<property name="javax.persistence.jdbc.password" value=""/>
 		<property name="hibernate.show_sql" value="drop-and-create"/>
 		<property name="hibernate.hbm2ddl.auto" value="update"/>
 	</properties>

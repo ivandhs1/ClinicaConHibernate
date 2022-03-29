@@ -243,4 +243,9 @@ public class Coordinador {
 		return miPersonaDao.consultarPersona(idPersona);
 	}
 
+	public void mostrarVentanaConsultarPersonas() {
+		miConsultarPersonasGui.setVisible(true);
+		
+	}
+
 }
