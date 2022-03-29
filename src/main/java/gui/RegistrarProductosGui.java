@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -17,6 +18,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
+import entidades.Producto;
 
 public class RegistrarProductosGui extends JDialog implements ActionListener{
 
@@ -107,21 +109,32 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 		txtIdProducto.setBounds(89, 20, 86, 20);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
-		
-		JLabel lblIdPersona = new JLabel("Id Persona: ");
-		lblIdPersona.setBounds(191, 23, 71, 14);
-		panel.add(lblIdPersona);
-		
-		txtIdPersona = new JTextField();
-		txtIdPersona.setColumns(10);
-		txtIdPersona.setBounds(269, 20, 86, 20);
-		panel.add(txtIdPersona);
+
 	}
 
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==btnRegistrar) {
+			
+			Producto miProducto = new Producto();
+			
+			miProducto.setIdProducto(Long.parseLong(txtIdProducto.getText()));
+			miProducto.setNombreProducto(txtNombre.getText());
+			miProducto.setPrecioProducto(Double.parseDouble(txtPrecio.getText()));
+			
+			String res = miCoordinador.registrarProducto(miProducto);
+			
+			if(res.equals("Producto Registrado!")) {
+				JOptionPane.showMessageDialog(null, "Registro Exitoso!!");
+			}else {
+				JOptionPane.showMessageDialog(null, "Error en el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
+			
+		}else if(e.getSource()==btnCancelar) {
+			this.dispose();
+		}
 	}
 
 
@@ -130,5 +143,12 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 		this.miCoordinador = miCoordinador;
 	}
 
+	public void limpiar() {
+		// TODO Auto-generated method stub
+		txtIdPersona.setText("");
+		txtIdProducto.setText("");
+		txtNombre.setText("");
+		txtPrecio.setText("");
+	}
 
 }

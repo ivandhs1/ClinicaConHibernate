@@ -11,6 +11,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
+import entidades.Producto;
 
 public class ActualizarProducto extends JDialog implements ActionListener{
 	private Coordinador miCoordinador;
@@ -106,27 +107,63 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 		txtIdProducto.setEnabled(true);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
-		
-		JLabel lblIdPersona = new JLabel("Id Persona: ");
-		lblIdPersona.setBounds(24, 67, 71, 14);
-		panel.add(lblIdPersona);
-		
-		txtIdPersona = new JTextField();
-		txtIdPersona.setColumns(10);
-		txtIdPersona.setBounds(89, 64, 86, 20);
-		panel.add(txtIdPersona);
+
 	}
 
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==btnBuscar) {
+				
+				Long idProducto = Long.parseLong(txtIdProducto.getText());
+				Producto miProducto = miCoordinador.consultarProducto(idProducto);
+				
+				if(miProducto!=null) {
+					
+					txtNombre.setText(miProducto.getNombreProducto());
+					txtPrecio.setText(miProducto.getPrecioProducto()+"");
+					txtIdProducto.setEnabled(false);
+				}else {
+					JOptionPane.showMessageDialog(null, "Producto no existente");
+				}
+				
+		}else if(e.getSource()==btnCancelar) {
+			
+			this.dispose();
+			
+		}else if(e.getSource()==btnActualizar) {
+			Producto miProducto = new Producto();
+			
+			miProducto.setIdProducto(Long.parseLong(txtIdProducto.getText()));
+			miProducto.setNombreProducto(txtNombre.getText());
+			miProducto.setPrecioProducto(Double.parseDouble(txtPrecio.getText()));
+			
+			String res = miCoordinador.actualizarProducto(miProducto);
+			
+			if(res.equals("Producto Actualizada!")) {
+				JOptionPane.showMessageDialog(null, "Actualizacion exitosa!!");
+			}else {
+				JOptionPane.showMessageDialog(null, res, "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+				
+		}
 	}
 
 
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;
+	}
+	
+	public void vaciar() {
+		txtIdPersona.setText("");
+		txtIdProducto.setText("");
+		txtNombre.setText("");
+		txtPrecio.setText("");
+	}
+	
+	public void escirbir() {
+		txtIdProducto.setEnabled(true);
 	}
 
 

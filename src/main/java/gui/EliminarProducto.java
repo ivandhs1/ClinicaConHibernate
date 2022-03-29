@@ -110,15 +110,6 @@ public class EliminarProducto extends JDialog implements ActionListener{
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
 		
-		JLabel lblIdPersona = new JLabel("Id Persona: ");
-		lblIdPersona.setBounds(24, 67, 71, 14);
-		panel.add(lblIdPersona);
-		
-		txtIdPersona = new JTextField();
-		txtIdPersona.setColumns(10);
-		txtIdPersona.setBounds(89, 64, 86, 20);
-		panel.add(txtIdPersona);
-		
 		lblseguro = new JLabel("\u00BFSeguro?");
 		lblseguro.setBounds(40, 130, 57, 21);
 		panel.add(lblseguro);
@@ -143,13 +134,70 @@ public class EliminarProducto extends JDialog implements ActionListener{
 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		
+		if(e.getSource()==btnBuscar) {
+			
+			Long idProducto = Long.parseLong(txtIdProducto.getText());
+			miProducto = miCoordinador.consultarProducto(idProducto);
+			
+			if(miProducto!=null) {
+
+				txtNombre.setText(miProducto.getNombreProducto());
+				txtPrecio.setText(miProducto.getPrecioProducto()+"");
+				
+				btnEliminar.setVisible(true);
+				
+				txtNombre.setEnabled(false);
+				txtPrecio.setEnabled(false);
+				
+				
+			}else {
+				JOptionPane.showMessageDialog(null, "Producto no existente");
+			}
+			
+		}else if(e.getSource()==btnCancelar) {
+			this.dispose();
+		}else if(e.getSource()==btnEliminar) {
+			
+			lblseguro.setVisible(true);
+			btnNo.setVisible(true);
+			btnSi.setVisible(true);
+		}else if(e.getSource()==btnNo) {
+			
+			btnEliminar.setVisible(false);
+			lblseguro.setVisible(false);
+			btnNo.setVisible(false);
+			btnSi.setVisible(false);
+			
+		}else if(e.getSource()==btnSi) {
+			
+			
+			miProducto.setIdProducto(Long.parseLong(txtIdProducto.getText()));
+			String verificacionEl = miCoordinador.eliminarProducto(miProducto);
+
+			
+			if(verificacionEl.equals("Producto Eliminada!")) {
+				
+				JOptionPane.showMessageDialog(null, "Eliminacion Exitosa");
+				this.dispose();
+				
+			}else {
+				System.out.println("Ocurrio un error");
+			}
+		}
+
+
 	}
 
 
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;
+	}	
+	
+	public void vaciar() {
+		txtIdPersona.setText("");
+		txtIdProducto.setText("");
+		txtNombre.setText("");
+		txtPrecio.setText("");
 	}
-
 }

@@ -10,6 +10,7 @@ import entidades.*;
 import gui.ActualizarMascotaGui;
 import gui.ActualizarPersonaGui;
 import gui.ActualizarProducto;
+import gui.ComprarProductoGui;
 import gui.ConsultarMascotaGui;
 import gui.ConsultarPersonaGui;
 import gui.ConsultarProductoGui;
@@ -59,6 +60,7 @@ public class Relaciones {
 		ListarProductos miListarProductosGui = new ListarProductos();
 		ActualizarProducto miActualizarProductosGui = new ActualizarProducto(miVentanaPrincipal, false);
 		EliminarProducto miEliminarProductoGui = new EliminarProducto(miVentanaPrincipal, false);
+		ComprarProductoGui miComprarProductosGui = new ComprarProductoGui(miVentanaPrincipal, false);
 		
 
 		// Se establece la relacion entre el coordinador y cada instancia unica
@@ -90,6 +92,7 @@ public class Relaciones {
 		miCoordinador.setListarProductosGui(miListarProductosGui);
 		miCoordinador.setActualizarProductosGui(miActualizarProductosGui);
 		miCoordinador.setEliminarProductosGui(miEliminarProductoGui);
+		miCoordinador.setComprarProductosGui(miComprarProductosGui);
 	
 		
 		

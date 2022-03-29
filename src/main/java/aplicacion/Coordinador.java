@@ -10,6 +10,7 @@ import entidades.*;
 import gui.ActualizarMascotaGui;
 import gui.ActualizarPersonaGui;
 import gui.ActualizarProducto;
+import gui.ComprarProductoGui;
 import gui.ConsultarMascotaGui;
 import gui.ConsultarPersonaGui;
 import gui.ConsultarProductoGui;
@@ -33,27 +34,27 @@ public class Coordinador {
 	GestionMascotas miGestionMascotas;
 	GestionPersonas miGestionPersonas;
 	GestionProductos miGestionProductos;
-	
+
 	VentanaPrincipal miVentanaPrincipal;
 	RegistrarPersonasGui miRegistrarPersonasGui;
 	ConsultarPersonaGui miConsultarPersonasGui;
 	ListarPersonas miListarPersonasGui;
 	ActualizarPersonaGui miActualizarPersonasGui;
 	EliminarPersonaGui miEliminarPersonasGui;
-	
+
 	RegistrarMascotasGui miRegistrarMascotasGui;
 	ConsultarMascotaGui miConsultarMascotaGui;
 	ListarMascotasGui miListarMascotasGui;
 	ActualizarMascotaGui miActualizarMascotas;
 	EliminarMascotaGui miEliminarMascotaGui;
-	
+
 	RegistrarProductosGui miRegistrarProductosGui;
 	ConsultarProductoGui miConsultarProductosGui;
 	ListarProductos miListarProductosGui;
 	ActualizarProducto miActualizarProductoGui;
 	EliminarProducto miEliminarProductosGui;
+	ComprarProductoGui miComprarProductosGui;
 
-	
 	public void setJPA(JPAUtil miJPA) {
 		// TODO Auto-generated method stub
 		this.miJPA = miJPA;
@@ -79,12 +80,10 @@ public class Coordinador {
 		this.miMascotaDao = miMascotaDao;
 	}
 
-
 	public void setPersonaDao(PersonaDao miPersonaDao) {
 		// TODO Auto-generated method stub
 		this.miPersonaDao = miPersonaDao;
 	}
-
 
 	public void setProductoDao(ProductoDao miProductoDao) {
 		// TODO Auto-generated method stub
@@ -125,7 +124,7 @@ public class Coordinador {
 		// TODO Auto-generated method stub
 		this.miRegistrarMascotasGui = miRegistrarMascotasGui;
 	}
-	
+
 	public void setConsultarMascotasGui(ConsultarMascotaGui miConsultarMascotasGui) {
 		// TODO Auto-generated method stub
 		this.miConsultarMascotaGui = miConsultarMascotasGui;
@@ -148,7 +147,7 @@ public class Coordinador {
 
 	public void setRegistrarProductosGui(RegistrarProductosGui miRegistrarProductoGui) {
 		// TODO Auto-generated method stub
-		this.miRegistrarProductosGui = miRegistrarProductosGui;
+		this.miRegistrarProductosGui = miRegistrarProductoGui;
 	}
 
 	public void setConsultarProductosGui(ConsultarProductoGui miConsultarProductoGui) {
@@ -186,11 +185,62 @@ public class Coordinador {
 		miRegistrarPersonasGui.setVisible(true);
 	}
 
-	
-	public Persona consultarPersona(Long idPersona) {
-		
-		return miPersonaDao.consultarPersona(idPersona);
+	public void mostrarVentanaRegistroProducto() {
+		// TODO Auto-generated method stub
+		miRegistrarProductosGui.setVisible(true);
+		miRegistrarProductosGui.limpiar();
 	}
 
+	public void mostrarVentanaConsultarProductos() {
+		// TODO Auto-generated method stub
+		miConsultarProductosGui.setVisible(true);
+		miConsultarProductosGui.limpiar();
+	}
+
+	public void mostrarVentanaActualizarProducto() {
+		// TODO Auto-generated method stub
+		miActualizarProductoGui.setVisible(true);
+		miActualizarProductoGui.vaciar();
+	}
+
+	public void mostrarVentanaEliminarProductos() {
+		// TODO Auto-generated method stub
+		miEliminarProductosGui.setVisible(true);
+	}
+
+	public String registrarProducto(Producto miProducto) {
+		// TODO Auto-generated method stub
+		return miProductoDao.registrarProducto(miProducto);
+	}
+
+	public Producto consultarProducto(Long idProducto) {
+		// TODO Auto-generated method stub
+		return miProductoDao.consultarProducto(idProducto);
+	}
+
+	public String actualizarProducto(Producto miProducto) {
+		// TODO Auto-generated method stub
+		return miProductoDao.actualizarProducto(miProducto);
+	}
+
+	public String eliminarProducto(Producto miProducto) {
+		// TODO Auto-generated method stub
+		return miProductoDao.eliminarProducto(miProducto);
+	}
+
+	public void setComprarProductosGui(ComprarProductoGui miComprarProductosGui) {
+		// TODO Auto-generated method stub
+		this.miComprarProductosGui = miComprarProductosGui;
+	}
+
+	public void mostrarVentanaComprarProductos() {
+		// TODO Auto-generated method stub
+		miComprarProductosGui.setVisible(true);
+	}
+
+	public Persona consultarPersona(Long idPersona) {
+
+		return miPersonaDao.consultarPersona(idPersona);
+	}
 
 }
