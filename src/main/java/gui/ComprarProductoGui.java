@@ -18,6 +18,7 @@ import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
 import entidades.PersonasProductos;
+import entidades.Producto;
 
 public class ComprarProductoGui extends JDialog implements ActionListener {
 	

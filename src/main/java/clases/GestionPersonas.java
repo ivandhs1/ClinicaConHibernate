@@ -14,8 +14,7 @@ import entidades.Persona;
 public class GestionPersonas {
 	
 	Coordinador miCoordinador;
-	PersonaDao miPersonaDao = new PersonaDao();
-	
+	PersonaDao miPersonaDao;
 		
 	private void registrar() {
 		// TODO Auto-generated method stub
