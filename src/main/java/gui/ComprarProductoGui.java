@@ -3,12 +3,14 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.JobAttributes;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
@@ -17,6 +19,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
+import entidades.Persona;
 import entidades.PersonasProductos;
 import entidades.Producto;
 
@@ -113,6 +116,18 @@ public class ComprarProductoGui extends JDialog implements ActionListener {
 			miProducto.setPersonaId(Long.parseLong(txtNombre.getText()));
 			miProducto.setProductoId(Long.parseLong(txtProducto.getText()));
 			
+			Producto miProC = miCoordinador.consultarProducto(miProducto.getProductoId());
+			Persona miPersona = miCoordinador.consultarPersona(miProducto.getPersonaId());
+			miProC.getListaPersonas().add(miPersona);
+			String res =miCoordinador.realizarCompra(miProducto);
+			
+			if(res.equals("OK")) {
+				JOptionPane.showMessageDialog(null,"COMPRA EXITOSA !!!");
+	
+			}else {
+				JOptionPane.showMessageDialog(null,"NO SE PUEDE REALIZAR LA COMPRA", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			
 		}else if(e.getSource()==btnCancelar) {
 			this.dispose();
@@ -120,5 +135,13 @@ public class ComprarProductoGui extends JDialog implements ActionListener {
 		
 		
 	}
+
+
+	public void setCoordinador(Coordinador miCoordinador) {
+		// TODO Auto-generated method stub
+		this.miCoordinador = miCoordinador;
+	}
+	
+	
 
 }
