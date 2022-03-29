@@ -248,4 +248,15 @@ public class Coordinador {
 		
 	}
 
+	public String realizarCompra(PersonasProductos miProducto) {
+		// TODO Auto-generated method stub
+		return miProductoDao.registrarCompra(miProducto);
+	}
+
+	public void mostrarListarProductos() {
+		// TODO Auto-generated method stub
+		miListarProductosGui.llenar(miProductoDao.consultarlistaProductos());
+		miListarProductosGui.setVisible(true);
+	}
+
 }

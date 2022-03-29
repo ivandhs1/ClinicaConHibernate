@@ -125,6 +125,7 @@ public class Relaciones {
 		miListarProductosGui.setCoordinador(miCoordinador);
 		miActualizarProductosGui.setCoordinador(miCoordinador);
 		miEliminarProductoGui.setCoordinador(miCoordinador);
+		miComprarProductosGui.setCoordinador(miCoordinador);
 		
 		
 		miVentanaPrincipal.setVisible(true);
