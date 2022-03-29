@@ -188,6 +188,7 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 		}if(e.getSource()==btnActualizar) {
 			
 			miMascota = new Mascota();
+			miMascota.setIdMascota(Long.parseLong(txtIdMascota.getText()));
 			miMascota.setNombre(txtNombre.getText());
 	        miMascota.setRaza(txtRaza.getText());
 	        miMascota.setColorMascota(txtColor.getText());
@@ -201,7 +202,20 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 			String verificacionMas=miCoordinador.actualizarMascota(miMascota);
 
 			lblResultado.setText(verificacionMas);
+			
+			limpiar();
+			
 		}
+		
+	}
+	public void limpiar() {
+		txtColor.setText("");
+		txtIdDueno.setText("");
+		txtIdMascota.setText("");
+		txtNombre.setText("");
+		txtRaza.setText("");
+		txtSexo.setText("");
+		btnActualizar.setVisible(false);
 		
 	}
 

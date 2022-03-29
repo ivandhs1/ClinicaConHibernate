@@ -286,5 +286,12 @@ public class Coordinador {
 		miActualizarMascotas.setVisible(true);
 		
 	}
+	
+	
+
+	public String eliminarMascota(Mascota miMascota) {
+		// TODO Auto-generated method stub
+		return miMascotaDao.eliminarMascota(miMascota);
+	}
 
 }

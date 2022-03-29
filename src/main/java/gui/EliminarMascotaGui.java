@@ -23,6 +23,7 @@ import javax.swing.border.EmptyBorder;
 import aplicacion.Coordinador;
 import entidades.Mascota;
 
+
 public class EliminarMascotaGui extends JDialog implements ActionListener{
 
 	private final JPanel contentPanel = new JPanel();
@@ -168,18 +169,81 @@ public class EliminarMascotaGui extends JDialog implements ActionListener{
 		
 	}
 
-
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==btnCancelar) {
+			
+			limpiar();
+			btnEliminar.setVisible(false);
+			lblseguro.setVisible(false);
+			btnNo.setVisible(false);
+			btnSi.setVisible(false);
+			this.dispose();
+		}if(e.getSource()==btnEliminar) {
+			lblseguro.setVisible(true);
+			btnNo.setVisible(true);
+			btnSi.setVisible(true);
+		}if(e.getSource()==btnBuscar) {
+			if(txtIdMascota.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "El campo documento esta vacio.","ADVERTENCIA!!",JOptionPane.WARNING_MESSAGE);
+			}else {
+				Long idMascota = Long.parseLong(txtIdMascota.getText());
+				Mascota miMascota = miCoordinador.consultarMascota(idMascota);
+				
+				if(miMascota!=null) {
+					
+					//txtIdDueno.setText(miMascota.getIdDueno()+"");
+					txtNombre.setText(miMascota.getNombre());
+					txtRaza.setText(miMascota.getRaza());
+					txtSexo.setText(miMascota.getSexo());
+					txtColor.setText(miMascota.getColorMascota());
+					btnEliminar.setVisible(true);
+					
+				}else {
+					JOptionPane.showMessageDialog(null, "Mascota no existente");
+				}
+			}
+			
+			
+		}if(e.getSource()==btnNo) {
+			limpiar();
+			btnEliminar.setVisible(false);
+			lblseguro.setVisible(false);
+			btnNo.setVisible(false);
+			btnSi.setVisible(false);
+		}if(e.getSource()==btnSi) {
+			p = new Mascota();
+			p.setIdMascota(Long.parseLong(txtIdMascota.getText()));
+			String verificacionElM = miCoordinador.eliminarMascota(p);
+			
+			if(verificacionElM.equals("ok")) {
+				
+				JOptionPane.showMessageDialog(null, "Eliminacion Exitosa");
+				this.dispose();
+				
+			}else {
+				System.out.println("Ocurrio un error");
+			}
+			
+		}
+	}
+
+
+	public void limpiar() {
+		txtColor.setText("");
+		txtIdDueno.setText("");
+		txtIdMascota.setText("");
+		txtNombre.setText("");
+		txtRaza.setText("");
+		txtSexo.setText("");
+		lblseguro.setVisible(false);
+		btnNo.setVisible(false);
+		btnSi.setVisible(false);
+		btnEliminar.setVisible(false);
 		
 	}
 
 
 	public void setCoordinador(Coordinador miCoordinador) {
-		// TODO Auto-generated method stub
-		this.miCoordinador = miCoordinador;
+		this.miCoordinador=miCoordinador;
 	}
-
-
-
 }
