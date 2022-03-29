@@ -39,7 +39,7 @@ public class ProductoDao {
 	       entityManager.getTransaction(). begin();
 	       entityManager.persist(producto);
 	       entityManager.getTransaction().commit();
-	       resp="Se realizó la compra del producto!";
+	       resp="OK";
 	    }catch (Exception e) {
 	       JOptionPane.showMessageDialog(null, "No se puede registrar" 
 	                + "la compra del Producto",

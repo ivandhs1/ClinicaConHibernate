@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -14,14 +15,17 @@ import javax.swing.JTable;
 
 import aplicacion.Coordinador;
 import entidades.PersonasProductos;
+import entidades.Producto;
+
+import java.awt.TextArea;
 
 public class ListarProductos extends JDialog implements ActionListener{
 	
 	private JPanel miPanel;
 	private Coordinador miCoordinador;
 	private JTable miTabla;
+	private TextArea textArea;
 	private JLabel titulo;
-	private JScrollPane miScrol;
 	private PersonasProductos produc;
 	public ListarProductos() {
 		setSize( 672, 449);
@@ -41,11 +45,11 @@ public class ListarProductos extends JDialog implements ActionListener{
 		titulo.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		miPanel.add(titulo);
 		
-		miScrol = new JScrollPane();
-		miScrol.setBounds(10,80,630,247);
-		miPanel.add(miScrol);
+		getContentPane().add(miPanel);
 		
-		add(miPanel);
+		textArea = new TextArea();
+		textArea.setBounds(21, 56, 612, 329);
+		miPanel.add(textArea);
 		
 	}
 
@@ -58,7 +62,12 @@ public class ListarProductos extends JDialog implements ActionListener{
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;
 	}
-
-
-
+	
+	public void llenar(List<Producto> listaProductos){
+		Producto miProducto = new Producto();
+		for(int i= 0; i<listaProductos.size(); i++) {
+			miProducto = listaProductos.get(i);
+			textArea.setText(textArea.getText()+miProducto.toString()+"\n\n");
+		}
+	}
 }
