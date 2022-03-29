@@ -1,6 +1,7 @@
 package aplicacion;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import clases.GestionMascotas;
 import clases.GestionPersonas;
@@ -248,6 +249,50 @@ public class Coordinador {
 		
 	}
 
+	public String registrarMascota(Mascota miMascota) {
+		return miMascotaDao.registrarMascota(miMascota);
+	}
+
+	public void mostrarVentanaRegistroMascotas() {
+		miRegistrarMascotasGui.setVisible(true);
+		
+	}
+
+	public Mascota consultarMascota(Long idMascota) {
+		return miMascotaDao.consultarMascota(idMascota);
+	}
+
+	public void mostrarVentanaConsultarMascotas() {
+		miConsultarMascotaGui.setVisible(true);
+		
+	}
+
+	public List<Mascota> consultarListaMascotas() {
+		return miMascotaDao.consultarListaMascotas();
+	}
+
+	public void mostrarVentanaListarMascotas() {
+		miListarMascotasGui.setVisible(true);
+		miListarMascotasGui.llenar();
+		
+	}
+
+	public String actualizarMascota(Mascota miMascota) {
+
+		return miMascotaDao.actualizarMascota(miMascota);
+	}
+
+	public void mostrarVentanaActualizarMascota() {
+		miActualizarMascotas.setVisible(true);
+		
+	}
+	
+	
+
+	public String eliminarMascota(Mascota miMascota) {
+		// TODO Auto-generated method stub
+		return miMascotaDao.eliminarMascota(miMascota);
+	}
 	public String realizarCompra(PersonasProductos miProducto) {
 		// TODO Auto-generated method stub
 		return miProductoDao.registrarCompra(miProducto);

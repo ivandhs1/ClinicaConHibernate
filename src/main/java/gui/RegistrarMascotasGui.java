@@ -22,6 +22,7 @@ import javax.swing.border.TitledBorder;
 
 import aplicacion.Coordinador;
 import entidades.Mascota;
+import entidades.Persona;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -38,6 +39,7 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 	private Coordinador miCoordinador;
 	private JComboBox comboBoxSexo, comboBoxColor;
 	private JTextField txtIdMascota;
+	private JLabel lblResultado;
 
 
 	/**
@@ -144,11 +146,44 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 		JLabel lblIdMascota = new JLabel("Id Mascota:");
 		lblIdMascota.setBounds(24, 20, 71, 14);
 		panel.add(lblIdMascota);
+		
+		lblResultado = new JLabel("");
+		lblResultado.setBounds(10, 127, 345, 14);
+		panel.add(lblResultado);
 	}
 
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==btnRegistrar) {
+
+			Mascota miMascota = new Mascota();
+			miMascota.setIdMascota(Long.parseLong(txtIdMascota.getText()));
+			miMascota.setNombre(txtNombre.getText());
+			miMascota.setRaza(txtRaza.getText());
+			miMascota.setSexo((String) comboBoxSexo.getSelectedItem());
+			miMascota.setColorMascota((String) comboBoxColor.getSelectedItem());
+			
+			
+			Persona miPersona = miCoordinador.consultarPersona(Long.parseLong(txtIdDueno.getText()));
+			
+			if(miPersona != null) {
+				
+				miMascota.setDuenio(miPersona);
+				
+				String res = miCoordinador.registrarMascota(miMascota);
+				
+				if(res.equals("ok")) {
+					lblResultado.setText(res);
+				}else {
+					lblResultado.setText(res);
+				}
+				
+			}else {
+				lblResultado.setText("Id de Dueño no existente, Porfavor ingrese uno existente");
+			}
+			
+			
+		}
 		
 	}
 
@@ -173,6 +208,4 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 		txtNombre.setText("");
 		txtRaza.setText("");
 	}
-
-
 }

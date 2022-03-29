@@ -22,6 +22,7 @@ import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
 import entidades.Mascota;
+import entidades.Persona;
 
 public class ActualizarMascotaGui extends JDialog implements ActionListener{
 
@@ -34,7 +35,8 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 	private JTextField txtIdMascota;
 	private JTextField txtSexo;
 	private JTextField txtColor;
-	private Mascota p;
+	private Mascota miMascota;
+	private JLabel lblResultado;
 
 
 	/**
@@ -146,6 +148,12 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 		btnActualizar.setBackground(new Color(152, 251, 152));
 		btnActualizar.addActionListener(this);
 		panel.add(btnActualizar);
+		
+		lblResultado = new JLabel("");
+		lblResultado.setBounds(10, 175, 345, 14);
+		panel.add(lblResultado);
+		
+		btnActualizar.setVisible(false);
 
 	}
 
@@ -157,10 +165,58 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==btnBuscar) {
+			
+			Mascota miMascota = miCoordinador.consultarMascota(Long.parseLong(txtIdMascota.getText()));
+			if(miMascota != null) {
+				txtIdDueno.setText(miMascota.getDuenio().getIdPersona()+"");
+				txtNombre.setText(miMascota.getNombre());
+				txtRaza.setText(miMascota.getRaza());
+				txtSexo.setText(miMascota.getSexo());
+				txtColor.setText(miMascota.getColorMascota());
+				btnActualizar.setVisible(true);
+				
+				txtIdDueno.setEnabled(true);
+				txtNombre.setEnabled(true);
+				txtRaza.setEnabled(true);
+				txtSexo.setEnabled(true);
+				txtColor.setEnabled(true);
+			}else {
+
+				lblResultado.setText("No se encontro la mascota");
+			}
+		}if(e.getSource()==btnActualizar) {
+			
+			miMascota = new Mascota();
+			miMascota.setIdMascota(Long.parseLong(txtIdMascota.getText()));
+			miMascota.setNombre(txtNombre.getText());
+	        miMascota.setRaza(txtRaza.getText());
+	        miMascota.setColorMascota(txtColor.getText());
+	        miMascota.setSexo(txtSexo.getText());
+
+	        Long idDuenio=Long.parseLong(txtIdDueno.getText());
+			Persona duenio=new Persona();//Se genera la instancia para permitir el registro
+			duenio.setIdPersona(idDuenio);//se agrega el id solicitado
+			miMascota.setDuenio(duenio);//Se agrega el due�o a la mascota
+			
+			String verificacionMas=miCoordinador.actualizarMascota(miMascota);
+
+			lblResultado.setText(verificacionMas);
+			
+			limpiar();
+			
+		}
 		
 	}
-
-
+	public void limpiar() {
+		txtColor.setText("");
+		txtIdDueno.setText("");
+		txtIdMascota.setText("");
+		txtNombre.setText("");
+		txtRaza.setText("");
+		txtSexo.setText("");
+		btnActualizar.setVisible(false);
+		
+	}
 
 }

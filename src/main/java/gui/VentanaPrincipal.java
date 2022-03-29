@@ -190,6 +190,14 @@ public class VentanaPrincipal extends JFrame implements ActionListener{
 			miCoordinador.mostrarVentanaComprarProductos();
 		}if(e.getSource()==itemConsultarPersonas) {
 			miCoordinador.mostrarVentanaConsultarPersonas();
+		}if(e.getSource()==itemRegistrarMascotas) {
+			miCoordinador.mostrarVentanaRegistroMascotas();
+		}if(e.getSource()==itemConsultarMascotas){
+			miCoordinador.mostrarVentanaConsultarMascotas();
+		}if(e.getSource()==itemListarMascotas) {
+			miCoordinador.mostrarVentanaListarMascotas();
+		}if(e.getSource()==itemActualizarMascotas) {
+			miCoordinador.mostrarVentanaActualizarMascota();
 		}
 		if(e.getSource()==itemListarProductos) {
 			miCoordinador.mostrarListarProductos();

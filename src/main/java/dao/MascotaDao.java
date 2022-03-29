@@ -66,9 +66,7 @@ public class MascotaDao {
 		    entityManager.getTransaction().commit();
 		    resp="Mascota Actualizada!";
 		}catch (Exception e) {
-		    JOptionPane.showMessageDialog (null, "No se puede actualizar "
-		             + "la mascota verifique qu� el due�o exista",
-		            "ERROR", JOptionPane.ERROR_MESSAGE );
+		    resp = "No se puede actualizar ";
 		}
 		return resp;
 	}

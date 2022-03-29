@@ -21,6 +21,7 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
 import aplicacion.Coordinador;
+import entidades.Mascota;
 
 public class ConsultarMascotaGui extends JDialog implements ActionListener{
 	
@@ -33,6 +34,7 @@ public class ConsultarMascotaGui extends JDialog implements ActionListener{
 	private JTextField txtIdMascota;
 	private JTextField txtSexo;
 	private JTextField txtColor;
+	private JLabel lblResultado;
 
 
 	/**
@@ -137,13 +139,29 @@ public class ConsultarMascotaGui extends JDialog implements ActionListener{
 		txtColor = new JTextField();
 		txtColor.setBounds(269, 131, 86, 20);
 		panel.add(txtColor);
+		
+		lblResultado = new JLabel("");
+		lblResultado.setBounds(24, 183, 336, 14);
+		panel.add(lblResultado);
 
 	}
 
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(e.getSource()==btnBuscar) {
+			
+			Mascota miMascota = miCoordinador.consultarMascota(Long.parseLong(txtIdMascota.getText()));
+			if(miMascota != null) {
+				txtIdDueno.setText(miMascota.getDuenio().getIdPersona()+"");
+				txtNombre.setText(miMascota.getNombre());
+				txtRaza.setText(miMascota.getRaza());
+				txtSexo.setText(miMascota.getSexo());
+				txtColor.setText(miMascota.getColorMascota());
+			}else {
+
+				lblResultado.setText("No se encontro la mascota");
+			}
+		}
 	}
 
 
@@ -151,8 +169,4 @@ public class ConsultarMascotaGui extends JDialog implements ActionListener{
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;
 	}
-	
-
-
-
 }
