@@ -37,7 +37,7 @@ public class ConsultarProductoGui extends JDialog implements ActionListener{
 	private JButton btnCancelar;
 	private JButton btnBuscar;
 	private JTextField txtIdProducto;
-	private JTextField txtIdPersona;
+
 
 
 	/**
@@ -117,6 +117,9 @@ public class ConsultarProductoGui extends JDialog implements ActionListener{
 		txtIdProducto.setBounds(170, 20, 86, 20);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
+		
+		txtNombre.setEditable(false);
+		txtPrecio.setEditable(false);
 
 	}
 
@@ -138,14 +141,13 @@ public class ConsultarProductoGui extends JDialog implements ActionListener{
 			}
 			
 		}else if(e.getSource()==btnCancelar) {
-			this.dispose();
+			limpiar();
 		}
 	}
 
 
 	public void limpiar() {
 		// TODO Auto-generated method stub
-		txtIdPersona.setText("");
 		txtIdProducto.setText("");
 		txtNombre.setText("");
 		txtPrecio.setText("");

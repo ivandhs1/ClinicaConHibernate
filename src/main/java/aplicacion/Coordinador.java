@@ -171,10 +171,7 @@ public class Coordinador {
 		this.miEliminarProductosGui = miEliminarProductoGui;
 	}
 
-	public void mostrarVentanaRegistroMascotas(long parseLong) {
-		// TODO Auto-generated method stub
-		this.miRegistrarMascotasGui.setVisible(true);
-	}
+	
 
 	public String registrarPersona(Persona miPersona) {
 		// TODO Auto-generated method stub
@@ -201,12 +198,13 @@ public class Coordinador {
 	public void mostrarVentanaActualizarProducto() {
 		// TODO Auto-generated method stub
 		miActualizarProductoGui.setVisible(true);
-		miActualizarProductoGui.vaciar();
+		miActualizarProductoGui.limpiar();
 	}
 
 	public void mostrarVentanaEliminarProductos() {
 		// TODO Auto-generated method stub
 		miEliminarProductosGui.setVisible(true);
+		miEliminarProductosGui.limpiar();
 	}
 
 	public String registrarProducto(Producto miProducto) {
@@ -237,6 +235,7 @@ public class Coordinador {
 	public void mostrarVentanaComprarProductos() {
 		// TODO Auto-generated method stub
 		miComprarProductosGui.setVisible(true);
+		miComprarProductosGui.limpiar();
 	}
 
 	public Persona consultarPersona(Long idPersona) {
@@ -246,6 +245,7 @@ public class Coordinador {
 
 	public void mostrarVentanaConsultarPersonas() {
 		miConsultarPersonasGui.setVisible(true);
+		miConsultarPersonasGui.limpiar();
 		
 	}
 
@@ -253,8 +253,15 @@ public class Coordinador {
 		return miMascotaDao.registrarMascota(miMascota);
 	}
 
+	public void mostrarVentanaRegistroMascotas(long parseLong) {
+		// TODO Auto-generated method stub
+		miRegistrarMascotasGui.setVisible(true);
+		miRegistrarMascotasGui.limpiar();
+		miRegistrarMascotasGui.ConID(parseLong);
+	}
 	public void mostrarVentanaRegistroMascotas() {
 		miRegistrarMascotasGui.setVisible(true);
+		miRegistrarMascotasGui.limpiar();
 		
 	}
 
@@ -264,7 +271,7 @@ public class Coordinador {
 
 	public void mostrarVentanaConsultarMascotas() {
 		miConsultarMascotaGui.setVisible(true);
-		
+		miConsultarMascotaGui.limpiar();
 	}
 
 	public List<Mascota> consultarListaMascotas() {
@@ -284,6 +291,7 @@ public class Coordinador {
 
 	public void mostrarVentanaActualizarMascota() {
 		miActualizarMascotas.setVisible(true);
+		miActualizarMascotas.limpiar();
 		
 	}
 	
@@ -303,6 +311,7 @@ public class Coordinador {
 
 	public void mostrarListarProductos() {
 		// TODO Auto-generated method stub
+		
 		miListarProductosGui.llenar(miProductoDao.consultarlistaProductos());
 		miListarProductosGui.setVisible(true);
 	}
@@ -331,5 +340,12 @@ public class Coordinador {
 	public List listaPersonas() {
 		return miPersonaDao.consultarListaPersonas();
 	}
+
+	public void mostrarEliminarMascotas() {
+		miEliminarMascotaGui.setVisible(true);
+		miEliminarMascotaGui.limpiar();
+		
+	}
+	
 
 }

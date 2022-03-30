@@ -199,9 +199,15 @@ public class ActualizarMascotaGui extends JDialog implements ActionListener{
 			duenio.setIdPersona(idDuenio);//se agrega el id solicitado
 			miMascota.setDuenio(duenio);//Se agrega el due�o a la mascota
 			
-			String verificacionMas=miCoordinador.actualizarMascota(miMascota);
+			String res=miCoordinador.actualizarMascota(miMascota);
 
-			lblResultado.setText(verificacionMas);
+			if(res.equals("Mascota Actualizada!")) {
+				JOptionPane.showMessageDialog(null,"ACTUALIZACION MASCOTA EXITOSA !!!");
+				limpiar();
+			}else {
+				JOptionPane.showMessageDialog(null, "Error en la actualizacion ", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
+			
 			
 			limpiar();
 			

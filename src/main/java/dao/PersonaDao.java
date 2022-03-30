@@ -20,7 +20,6 @@ public class PersonaDao {
 	
 	public String registrarPersona(Persona miPersona) {
 		// TODO Auto-generated method stub
-		System.out.println(miPersona);
 		
 		entityManager.getTransaction().begin();
 		entityManager.persist(miPersona);

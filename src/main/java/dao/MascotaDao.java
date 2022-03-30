@@ -23,9 +23,7 @@ public class MascotaDao {
 		    entityManager.getTransaction ().commit();
 		    resp="Mascota Registrada!";
 		}catch (Exception e) {
-		    JOptionPane.showMessageDialog (null, "No se puede registrar "
-		             + "la mascota verifique que el dueño exista",
-		            "ERROR", JOptionPane.ERROR_MESSAGE );
+		    resp = "No se puede registrar la mascota verifique que el dueño exista";
 		}
 		return resp;
 	}
@@ -74,7 +72,7 @@ public class MascotaDao {
 	public String eliminarMascota(Mascota miMascota) {
 	    entityManager.getTransaction().begin();
 	    entityManager.remove (miMascota);
-	   entityManager.getTransaction().commit ( );
+	    entityManager.getTransaction().commit ( );
 	    String resp="Mascota Eliminada!";
 	    return resp;
 	}

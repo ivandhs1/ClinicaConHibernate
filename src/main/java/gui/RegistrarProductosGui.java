@@ -29,7 +29,6 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 	private JButton btnCancelar;
 	private JButton btnRegistrar;
 	private JTextField txtIdProducto;
-	private JTextField txtIdPersona;
 
 
 	/**
@@ -109,6 +108,7 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 		txtIdProducto.setBounds(89, 20, 86, 20);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
+		
 
 	}
 
@@ -127,13 +127,14 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 			
 			if(res.equals("Producto Registrado!")) {
 				JOptionPane.showMessageDialog(null, "Registro Exitoso!!");
+				limpiar();
 			}else {
 				JOptionPane.showMessageDialog(null, "Error en el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 			
 			
 		}else if(e.getSource()==btnCancelar) {
-			this.dispose();
+			limpiar();
 		}
 	}
 
@@ -144,8 +145,7 @@ public class RegistrarProductosGui extends JDialog implements ActionListener{
 	}
 
 	public void limpiar() {
-		// TODO Auto-generated method stub
-		txtIdPersona.setText("");
+
 		txtIdProducto.setText("");
 		txtNombre.setText("");
 		txtPrecio.setText("");

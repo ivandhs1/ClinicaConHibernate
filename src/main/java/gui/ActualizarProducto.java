@@ -22,7 +22,6 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 	private JButton btnBuscar;
 	private JButton btnActualizar;
 	private JTextField txtIdProducto;
-	private JTextField txtIdPersona;
 
 
 	/**
@@ -107,6 +106,8 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 		txtIdProducto.setEnabled(true);
 		panel.add(txtIdProducto);
 		txtIdProducto.setColumns(10);
+		
+		
 
 	}
 
@@ -122,14 +123,19 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 					
 					txtNombre.setText(miProducto.getNombreProducto());
 					txtPrecio.setText(miProducto.getPrecioProducto()+"");
+					
+					txtNombre.setEditable(true);
+					txtPrecio.setEditable(true);
 					txtIdProducto.setEnabled(false);
+					
+					btnActualizar.setVisible(true);
 				}else {
 					JOptionPane.showMessageDialog(null, "Producto no existente");
 				}
 				
 		}else if(e.getSource()==btnCancelar) {
 			
-			this.dispose();
+			limpiar();
 			
 		}else if(e.getSource()==btnActualizar) {
 			Producto miProducto = new Producto();
@@ -142,6 +148,7 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 			
 			if(res.equals("Producto Actualizada!")) {
 				JOptionPane.showMessageDialog(null, "Actualizacion exitosa!!");
+				limpiar();
 			}else {
 				JOptionPane.showMessageDialog(null, res, "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
@@ -155,11 +162,14 @@ public class ActualizarProducto extends JDialog implements ActionListener{
 		this.miCoordinador = miCoordinador;
 	}
 	
-	public void vaciar() {
-		txtIdPersona.setText("");
+	public void limpiar() {
+		// TODO Auto-generated method stub
 		txtIdProducto.setText("");
 		txtNombre.setText("");
 		txtPrecio.setText("");
+		txtNombre.setEditable(false);
+		txtPrecio.setEditable(false);
+		btnActualizar.setVisible(false);
 	}
 	
 	public void escirbir() {

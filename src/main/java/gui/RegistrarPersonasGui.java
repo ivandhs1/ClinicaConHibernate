@@ -185,8 +185,8 @@ public class RegistrarPersonasGui extends JDialog implements ActionListener{
 		txtPais.setBounds(424, 59, 86, 20);
 		panelNacimiento.add(txtPais);
 		
-		btnAgregarMascotas = new JButton("Agregar Mascotas");
-		btnAgregarMascotas.setBounds(364, 219, 190, 23);
+		btnAgregarMascotas = new JButton("Registrar y Agregar Mascotas");
+		btnAgregarMascotas.setBounds(314, 219, 240, 23);
 		btnAgregarMascotas.addActionListener(this);
 		btnAgregarMascotas.setBackground(SystemColor.activeCaption);
 		panel.add(btnAgregarMascotas);
@@ -220,11 +220,10 @@ public class RegistrarPersonasGui extends JDialog implements ActionListener{
 		}else if(e.getSource()==btnAgregarMascotas) {
 			registrar2();
 			miCoordinador.mostrarVentanaRegistroMascotas(Long.parseLong(txtDocumento.getText()));
-			this.dispose();
+			limpiar();
 			
 		}else if(e.getSource()==btnCancelar) {
 			limpiar();
-			this.dispose();
 		}
 	}
 	
@@ -264,6 +263,7 @@ public class RegistrarPersonasGui extends JDialog implements ActionListener{
 		
 		if(idNacimiento.equals("Persona Registrada!")) {
 			JOptionPane.showMessageDialog(null,"REGISTRO EXITOSO !!!");
+			limpiar();
 		}else {
 			JOptionPane.showMessageDialog(null, "Error en el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}

@@ -19,7 +19,7 @@ import entidades.Producto;
 
 import java.awt.TextArea;
 
-public class ListarProductos extends JDialog implements ActionListener{
+public class ListarProductos extends JDialog{
 	
 	private JPanel miPanel;
 	private Coordinador miCoordinador;
@@ -40,7 +40,7 @@ public class ListarProductos extends JDialog implements ActionListener{
 		miPanel = new JPanel();
 		miPanel.setLayout(null);
 		
-		titulo = new JLabel("Lista de Personas");
+		titulo = new JLabel("Lista de Productos");
 		titulo.setBounds(220,20,180,30);
 		titulo.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
 		miPanel.add(titulo);
@@ -50,13 +50,10 @@ public class ListarProductos extends JDialog implements ActionListener{
 		textArea = new TextArea();
 		textArea.setBounds(21, 56, 612, 329);
 		miPanel.add(textArea);
+		textArea.setEditable(false);
 		
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
 
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub
@@ -64,6 +61,7 @@ public class ListarProductos extends JDialog implements ActionListener{
 	}
 	
 	public void llenar(List<Producto> listaProductos){
+		textArea.setText("");
 		Producto miProducto = new Producto();
 		for(int i= 0; i<listaProductos.size(); i++) {
 			miProducto = listaProductos.get(i);

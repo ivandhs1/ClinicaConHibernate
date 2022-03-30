@@ -278,7 +278,7 @@ public class EliminarPersonaGui extends JDialog implements ActionListener{
 			if(verificacionEl.equals("Persona Eliminada!")) {
 				
 				JOptionPane.showMessageDialog(null, "Eliminacion de persona Exitosa");
-				this.dispose();
+				limpiar();
 				
 			}else {
 				System.out.println("Ocurrio un error");

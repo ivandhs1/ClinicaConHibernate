@@ -177,7 +177,6 @@ public class EliminarMascotaGui extends JDialog implements ActionListener{
 			lblseguro.setVisible(false);
 			btnNo.setVisible(false);
 			btnSi.setVisible(false);
-			this.dispose();
 		}if(e.getSource()==btnEliminar) {
 			lblseguro.setVisible(true);
 			btnNo.setVisible(true);
@@ -186,12 +185,9 @@ public class EliminarMascotaGui extends JDialog implements ActionListener{
 			if(txtIdMascota.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "El campo documento esta vacio.","ADVERTENCIA!!",JOptionPane.WARNING_MESSAGE);
 			}else {
-				Long idMascota = Long.parseLong(txtIdMascota.getText());
-				Mascota miMascota = miCoordinador.consultarMascota(idMascota);
-				
-				if(miMascota!=null) {
-					
-					//txtIdDueno.setText(miMascota.getIdDueno()+"");
+				Mascota miMascota = miCoordinador.consultarMascota(Long.parseLong(txtIdMascota.getText()));
+				if(miMascota != null) {
+					txtIdDueno.setText(miMascota.getDuenio().getIdPersona()+"");
 					txtNombre.setText(miMascota.getNombre());
 					txtRaza.setText(miMascota.getRaza());
 					txtSexo.setText(miMascota.getSexo());
@@ -199,7 +195,8 @@ public class EliminarMascotaGui extends JDialog implements ActionListener{
 					btnEliminar.setVisible(true);
 					
 				}else {
-					JOptionPane.showMessageDialog(null, "Mascota no existente");
+					JOptionPane.showMessageDialog(null, "no se pudo actualizar la perona");
+
 				}
 			}
 			
@@ -211,18 +208,12 @@ public class EliminarMascotaGui extends JDialog implements ActionListener{
 			btnNo.setVisible(false);
 			btnSi.setVisible(false);
 		}if(e.getSource()==btnSi) {
-			p = new Mascota();
-			p.setIdMascota(Long.parseLong(txtIdMascota.getText()));
-			String verificacionElM = miCoordinador.eliminarMascota(p);
+			Mascota miMascota = miCoordinador.consultarMascota(Long.parseLong(txtIdMascota.getText()));
 			
-			if(verificacionElM.equals("ok")) {
-				
-				JOptionPane.showMessageDialog(null, "Eliminacion Exitosa");
-				this.dispose();
-				
-			}else {
-				System.out.println("Ocurrio un error");
-			}
+			String verificacionEl = miCoordinador.eliminarMascota(miMascota);
+			
+			JOptionPane.showMessageDialog(null,verificacionEl);
+			limpiar();
 			
 		}
 	}

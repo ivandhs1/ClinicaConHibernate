@@ -49,6 +49,7 @@ public class ListarPersonas extends JDialog {
 		miScrol.setViewportView(txtPersonas);
 		
 		add(miPanel);
+		txtPersonas.setEditable(false);
 		
 	}
 
