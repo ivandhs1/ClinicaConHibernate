@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import aplicacion.Coordinador;
+import entidades.Nacimiento;
 import entidades.Persona;
 
 import java.awt.Color;
@@ -195,8 +196,68 @@ public class ActualizarPersonaGui extends JDialog implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		if(e.getSource()==btnBuscar) {
+			Persona p = miCoordinador.consultarPersona(Long.parseLong(txtDocumento.getText()));
+		    if (p != null) {
+		    	txtNombre.setText(p.getNombre());
+				txtProfesion.setText(p.getProfesion());
+				txtTelefono.setText(p.getTelefono());
+				txtTipo.setText(p.getTipo() + "");
+				txtCiudad.setText(p.getNacimiento().getCiudadNAcimiento());
+				txtDepartamento.setText(p.getNacimiento().getDepartamentoNacimiento());
+				txtPais.setText(p.getNacimiento().getPaisNacimiento());
+				txtDia.setText(p.getNacimiento().getFechaNacimeinto().getDayOfMonth() + "");
+				txtMes.setText(p.getNacimiento().getFechaNacimeinto().getMonthValue() + "");
+				txtAnnio.setText(p.getNacimiento().getFechaNacimeinto().getYear() + "");
+
+		    } else {
+		        System.out.println();
+		        System.out.println("No se encontró la mascota");
+		    }
+		    System.out.println();
+		}else if(e.getSource()==btnActualizar) {
+			Persona miPersona = new Persona();
+			miPersona.setIdPersona(Long.parseLong(txtDocumento.getText()));
+			miPersona.setNombre(txtNombre.getText());
+			miPersona.setProfesion(txtProfesion.getText());
+			miPersona.setTelefono(txtTelefono.getText());
+			miPersona.setTipo(Integer.parseInt(txtTipo.getText()));
+			
+			Nacimiento miNacimiento = new Nacimiento();
+			miNacimiento.setCiudadNAcimiento(txtCiudad.getText());
+			miNacimiento.setDepartamentoNacimiento(txtDepartamento.getText());
+			miNacimiento.setPaisNacimiento(txtPais.getText());
+			miNacimiento.setFechaNacimeinto(LocalDate.of(Integer.parseInt(txtAnnio.getText()), Integer.parseInt(txtMes.getText()), Integer.parseInt(txtDia.getText())));
+			
+			miPersona.setNacimiento(miNacimiento);
+			
+			String idNacimiento=miCoordinador.actualizarPersona(miPersona);
+			
+			if(idNacimiento.equals("Persona Actualizada!")) {
+				JOptionPane.showMessageDialog(null, "Persona Actualizada!");
+			}else {
+				JOptionPane.showMessageDialog(null, "no se pudo actualizar la perona");
+			}
+			
+		}else if(e.getSource()==btnCancelar) {
+			limpiar();
+		}
+	}
+
+	public void limpiar() {
 		// TODO Auto-generated method stub
-		
+		txtDocumento.setEnabled(true);
+		txtDocumento.setText("");
+		txtNombre.setText("");
+		txtProfesion.setText("");
+		txtTelefono.setText("");
+		txtTipo.setText("");
+		txtAnnio.setText("");
+		txtMes.setText("");
+		txtDia.setText("");
+		txtDepartamento.setText("");
+		txtPais.setText("");
+		txtCiudad.setText("");
 	}
 
 	
