@@ -143,6 +143,12 @@ public class ConsultarMascotaGui extends JDialog implements ActionListener{
 		lblResultado = new JLabel("");
 		lblResultado.setBounds(24, 183, 336, 14);
 		panel.add(lblResultado);
+		
+		txtIdDueno.setEditable(false);
+		txtNombre.setEditable(false);
+		txtRaza.setEditable(false);
+		txtColor.setEditable(false);
+		txtSexo.setEditable(false);
 
 	}
 
@@ -161,10 +167,20 @@ public class ConsultarMascotaGui extends JDialog implements ActionListener{
 
 				lblResultado.setText("No se encontro la mascota");
 			}
+		}if(e.getSource()==btnCancelar) {
+			limpiar();
 		}
 	}
 
-
+	public void limpiar() {
+		// TODO Auto-generated method stub
+		txtIdDueno.setText("");
+		txtIdMascota.setText("");
+		txtNombre.setText("");
+		txtRaza.setText("");
+		txtColor.setText("");
+		txtSexo.setText("");
+	}
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;

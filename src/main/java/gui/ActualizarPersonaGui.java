@@ -199,6 +199,7 @@ public class ActualizarPersonaGui extends JDialog implements ActionListener {
 		if(e.getSource()==btnBuscar) {
 			Persona p = miCoordinador.consultarPersona(Long.parseLong(txtDocumento.getText()));
 		    if (p != null) {
+		    	txtDocumento.setEnabled(false);
 		    	txtNombre.setText(p.getNombre());
 				txtProfesion.setText(p.getProfesion());
 				txtTelefono.setText(p.getTelefono());
@@ -234,6 +235,7 @@ public class ActualizarPersonaGui extends JDialog implements ActionListener {
 			String idNacimiento=miCoordinador.actualizarPersona(miPersona);
 			
 			if(idNacimiento.equals("Persona Actualizada!")) {
+				limpiar();
 				JOptionPane.showMessageDialog(null, "Persona Actualizada!");
 			}else {
 				JOptionPane.showMessageDialog(null, "no se pudo actualizar la perona");

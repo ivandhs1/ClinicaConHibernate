@@ -33,7 +33,6 @@ public class ComprarProductoGui extends JDialog implements ActionListener {
 	private JTextField txtProducto;
 	private JButton btnCancelar;
 	private JButton btnComprar;
-	private JTextField txtIdPersona;
 
 
 	/**
@@ -123,6 +122,7 @@ public class ComprarProductoGui extends JDialog implements ActionListener {
 			
 			if(res.equals("OK")) {
 				JOptionPane.showMessageDialog(null,"COMPRA EXITOSA !!!");
+				limpiar();
 	
 			}else {
 				JOptionPane.showMessageDialog(null,"NO SE PUEDE REALIZAR LA COMPRA", "ERROR", JOptionPane.ERROR_MESSAGE);
@@ -130,12 +130,17 @@ public class ComprarProductoGui extends JDialog implements ActionListener {
 			
 			
 		}else if(e.getSource()==btnCancelar) {
-			this.dispose();
+			limpiar();
 		}
 		
 		
 	}
 
+	public void limpiar() {
+
+		txtProducto.setText("");
+		txtNombre.setText("");
+	}
 
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub

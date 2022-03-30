@@ -208,15 +208,31 @@ public class ConsultarPersonaGui extends JDialog implements ActionListener{
 				txtDia.setText(p.getNacimiento().getFechaNacimeinto().getDayOfMonth() + "");
 				txtMes.setText(p.getNacimiento().getFechaNacimeinto().getMonthValue() + "");
 				txtAnnio.setText(p.getNacimiento().getFechaNacimeinto().getYear() + "");
+				txtDocumento.setEnabled(false);
 
 		    } else {
-		        System.out.println();
-		        System.out.println("No se encontró la mascota");
+		        JOptionPane.showMessageDialog(null,"No se encontró la mascota");
 		    }
 		    System.out.println();
+		}if(e.getSource()==btnCancelar) {
+			limpiar();
 		}
 	}
 
+	public void limpiar() {
+		txtDocumento.setEnabled(true);
+		txtDocumento.setText("");
+		txtNombre.setText("");
+		txtProfesion.setText("");
+		txtTelefono.setText("");
+		txtTipo.setText("");
+		txtAnnio.setText("");
+		txtMes.setText("");
+		txtDia.setText("");
+		txtDepartamento.setText("");
+		txtPais.setText("");
+		txtCiudad.setText("");
+	}
 	public void setMiCoordinador(Coordinador miCoordinador) {
 		this.miCoordinador=miCoordinador;
 		

@@ -23,7 +23,6 @@ public class EliminarProducto extends JDialog implements ActionListener{
 	private JButton btnBuscar;
 	private JButton btnEliminar,btnNo, btnSi;
 	private JTextField txtIdProducto;
-	private JTextField txtIdPersona;
 	private JLabel lblseguro;
 	private Producto miProducto;
 	private PersonasProductos produc;
@@ -125,10 +124,10 @@ public class EliminarProducto extends JDialog implements ActionListener{
 		btnSi.setBounds(5, 150, 50, 23);
 		btnSi.addActionListener(this);
 		panel.add(btnSi);
-		lblseguro.setVisible(false);
-		btnNo.setVisible(false);
-		btnSi.setVisible(false);
-		btnEliminar.setVisible(false);
+		
+		txtNombre.setEditable(false);
+		txtPrecio.setEditable(false);
+		
 	}
 
 
@@ -136,26 +135,31 @@ public class EliminarProducto extends JDialog implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource()==btnBuscar) {
 			
-			Long idProducto = Long.parseLong(txtIdProducto.getText());
-			miProducto = miCoordinador.consultarProducto(idProducto);
-			
-			if(miProducto!=null) {
-
-				txtNombre.setText(miProducto.getNombreProducto());
-				txtPrecio.setText(miProducto.getPrecioProducto()+"");
-				
-				btnEliminar.setVisible(true);
-				
-				txtNombre.setEnabled(false);
-				txtPrecio.setEnabled(false);
-				
-				
+			if(txtIdProducto.getText().equals("")) {
+				JOptionPane.showMessageDialog(null,"Campo id vacio.", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}else {
-				JOptionPane.showMessageDialog(null, "Producto no existente");
+				Long idProducto = Long.parseLong(txtIdProducto.getText());
+				miProducto = miCoordinador.consultarProducto(idProducto);
+				
+				if(miProducto!=null) {
+
+					txtNombre.setText(miProducto.getNombreProducto());
+					txtPrecio.setText(miProducto.getPrecioProducto()+"");
+					
+					btnEliminar.setVisible(true);
+					
+					txtNombre.setEnabled(false);
+					txtPrecio.setEnabled(false);
+					
+					
+				}else {
+					JOptionPane.showMessageDialog(null,"Producto no existente", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 			
+			
 		}else if(e.getSource()==btnCancelar) {
-			this.dispose();
+			limpiar();
 		}else if(e.getSource()==btnEliminar) {
 			
 			lblseguro.setVisible(true);
@@ -178,10 +182,10 @@ public class EliminarProducto extends JDialog implements ActionListener{
 			if(verificacionEl.equals("Producto Eliminada!")) {
 				
 				JOptionPane.showMessageDialog(null, "Eliminacion Exitosa");
-				this.dispose();
+				limpiar();
 				
 			}else {
-				System.out.println("Ocurrio un error");
+				JOptionPane.showMessageDialog(null,"Ocurrio un error", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		}
 
@@ -194,10 +198,14 @@ public class EliminarProducto extends JDialog implements ActionListener{
 		this.miCoordinador = miCoordinador;
 	}	
 	
-	public void vaciar() {
-		txtIdPersona.setText("");
+	public void limpiar() {
+		
 		txtIdProducto.setText("");
 		txtNombre.setText("");
 		txtPrecio.setText("");
+		lblseguro.setVisible(false);
+		btnNo.setVisible(false);
+		btnSi.setVisible(false);
+		btnEliminar.setVisible(false);
 	}
 }

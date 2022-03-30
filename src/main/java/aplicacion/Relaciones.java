@@ -49,7 +49,7 @@ public class Relaciones {
 		ActualizarPersonaGui miActualizarPersonasGui = new ActualizarPersonaGui(miVentanaPrincipal, false);
 		EliminarPersonaGui miEliminarPersonasGui = new EliminarPersonaGui(miVentanaPrincipal, false);
 		
-		RegistrarMascotasGui miRegistrarMascotasGui = new RegistrarMascotasGui(miVentanaPrincipal, false, null);
+		RegistrarMascotasGui miRegistrarMascotasGui = new RegistrarMascotasGui(miVentanaPrincipal, false);
 		ConsultarMascotaGui miConsultarMascotasGui = new ConsultarMascotaGui(miVentanaPrincipal, false);
 		ListarMascotasGui miListarMascotasGui = new ListarMascotasGui();
 		ActualizarMascotaGui miActualizarMascotasGui = new ActualizarMascotaGui(miVentanaPrincipal, false);

@@ -40,6 +40,7 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 	private JComboBox comboBoxSexo, comboBoxColor;
 	private JTextField txtIdMascota;
 	private JLabel lblResultado;
+	private Long docu;
 
 
 	/**
@@ -48,19 +49,19 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 	 * @param ventanaPrincipal 
 	 * @param documento 
 	 */
-	public RegistrarMascotasGui(VentanaPrincipal ventanaPrincipal, boolean modal, String documento) {
+	public RegistrarMascotasGui(VentanaPrincipal ventanaPrincipal, boolean modal) {
 		super(ventanaPrincipal,modal);
 		setSize( 408, 288);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		setTitle("Gestion de Mascotas");
-		iniciarComponentes(documento);
+		iniciarComponentes();
 		
 		
 	}
 
 
-	private void iniciarComponentes(String documento) {
+	private void iniciarComponentes() {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
@@ -82,7 +83,6 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 		panel.add(lblDueno);
 		
 		txtIdDueno = new JTextField();
-		txtIdDueno.setText(documento);
 		txtIdDueno.setBounds(269, 17, 86, 20);
 		panel.add(txtIdDueno);
 		txtIdDueno.setColumns(10);
@@ -172,19 +172,26 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 				
 				String res = miCoordinador.registrarMascota(miMascota);
 				
-				if(res.equals("ok")) {
-					lblResultado.setText(res);
+				if(res.equals("Mascota Registrada!")) {
+					JOptionPane.showMessageDialog(null,"REGISTRO EXITOSO !!!");
+					limpiar();
 				}else {
-					lblResultado.setText(res);
+					JOptionPane.showMessageDialog(null, "Error en el registro", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}else {
 				lblResultado.setText("Id de Dueño no existente, Porfavor ingrese uno existente");
 			}
 			
-			
+		}if(e.getSource()==btnCancelar) {
+			limpiar();
 		}
 		
+	}
+	
+	public void ConID(Long id) {
+		txtIdDueno.setEditable(false);
+		txtIdDueno.setText(String.valueOf(id));
 	}
 
 
@@ -207,5 +214,6 @@ public class RegistrarMascotasGui extends JDialog implements ActionListener{
 		txtIdMascota.setText("");
 		txtNombre.setText("");
 		txtRaza.setText("");
+		
 	}
 }
