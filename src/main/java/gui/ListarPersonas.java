@@ -5,13 +5,15 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
 
 import aplicacion.Coordinador;
+import entidades.Mascota;
 import entidades.Persona;
 
-public class ListarPersonas extends JDialog implements ActionListener{
+public class ListarPersonas extends JDialog {
 	
 	private JPanel miPanel;
 	private Coordinador miCoordinador;
@@ -19,6 +21,7 @@ public class ListarPersonas extends JDialog implements ActionListener{
 	private JTable miTabla;
 	private JLabel titulo;
 	private JScrollPane miScrol;
+	private JTextArea txtPersonas;
 	
 	public ListarPersonas() {
 		setSize( 672, 449);
@@ -42,20 +45,30 @@ public class ListarPersonas extends JDialog implements ActionListener{
 		miScrol.setBounds(10,80,630,247);
 		miPanel.add(miScrol);
 		
+		txtPersonas = new JTextArea();
+		miScrol.setViewportView(txtPersonas);
+		
 		add(miPanel);
 		
 	}
 
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+	public void llenar() {
+		List<Persona> listaMascotas = miCoordinador.listaPersonas();
 		
+		for (Persona persona : listaMascotas) {
+			System.out.println(persona);
+			txtPersonas.setText(txtPersonas.getText()+persona.imprimir()+"\n");
+		}
 	}
 
 	public void setCoordinador(Coordinador miCoordinador) {
 		// TODO Auto-generated method stub
 		this.miCoordinador = miCoordinador;
 	}
-
+	
+	public void vaciar() {
+		txtPersonas.setText("");
+	}
 
 		
 }
