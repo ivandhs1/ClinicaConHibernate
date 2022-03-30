@@ -233,8 +233,78 @@ public class EliminarPersonaGui extends JDialog implements ActionListener{
 	}
 
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 		
+		if(e.getSource()==btnCancelar) {
+			
+			limpiar();
+			btnEliminar.setVisible(false);
+			lblseguro.setVisible(false);
+			btnNo.setVisible(false);
+			btnSi.setVisible(false);
+		}if(e.getSource()==btnEliminar) {
+			lblseguro.setVisible(true);
+			btnNo.setVisible(true);
+			btnSi.setVisible(true);
+		}if(e.getSource()==btnBuscar) {
+			Persona p = miCoordinador.consultarPersona(Long.parseLong(txtDocumento.getText()));
+		    if (p != null) {
+		    	txtNombre.setText(p.getNombre());
+				txtProfesion.setText(p.getProfesion());
+				txtTelefono.setText(p.getTelefono());
+				txtTipo.setText(p.getTipo() + "");
+				txtCiudad.setText(p.getNacimiento().getCiudadNAcimiento());
+				txtDepartamento.setText(p.getNacimiento().getDepartamentoNacimiento());
+				txtPais.setText(p.getNacimiento().getPaisNacimiento());
+				txtDia.setText(p.getNacimiento().getFechaNacimeinto().getDayOfMonth() + "");
+				txtMes.setText(p.getNacimiento().getFechaNacimeinto().getMonthValue() + "");
+				txtAnnio.setText(p.getNacimiento().getFechaNacimeinto().getYear() + "");
+				btnEliminar.setVisible(true);
+		    } else {
+		        System.out.println();
+		        System.out.println("No se encontró la mascota");
+		    }
+		    System.out.println();	
+		}if(e.getSource()==btnNo) {
+			limpiar();
+			btnEliminar.setVisible(false);
+			lblseguro.setVisible(false);
+			btnNo.setVisible(false);
+			btnSi.setVisible(false);
+		}if(e.getSource()==btnSi) {
+			Persona p = miCoordinador.consultarPersona(Long.parseLong(txtDocumento.getText()));
+			System.out.println(p);
+			String verificacionEl = miCoordinador.eliminarPersona(p);
+			
+			if(verificacionEl.equals("Persona Eliminada!")) {
+				
+				JOptionPane.showMessageDialog(null, "Eliminacion de persona Exitosa");
+				this.dispose();
+				
+			}else {
+				System.out.println("Ocurrio un error");
+			}
+			
+		}
+		
+		
+	}
+	
+	public void limpiar() {
+		txtDocumento.setText("");
+		txtNombre.setText("");
+		txtProfesion.setText("");
+		txtTelefono.setText("");
+		txtTipo.setText("");
+		txtAnnio.setText("");
+		txtMes.setText("");
+		txtDia.setText("");
+		txtDepartamento.setText("");
+		txtPais.setText("");
+		txtCiudad.setText("");
+		lblseguro.setVisible(false);
+		btnNo.setVisible(false);
+		btnSi.setVisible(false);
+		btnEliminar.setVisible(false);
 	}
 
 	public void setCoordinador(Coordinador miCoordinador) {

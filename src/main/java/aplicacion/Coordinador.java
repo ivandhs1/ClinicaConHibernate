@@ -287,7 +287,10 @@ public class Coordinador {
 		
 	}
 	
-	
+	public void mostrarVentanaActualizarPersona() {
+		miActualizarPersonasGui.limpiar();
+		miActualizarPersonasGui.setVisible(true);
+	}
 
 	public String eliminarMascota(Mascota miMascota) {
 		// TODO Auto-generated method stub
@@ -302,6 +305,31 @@ public class Coordinador {
 		// TODO Auto-generated method stub
 		miListarProductosGui.llenar(miProductoDao.consultarlistaProductos());
 		miListarProductosGui.setVisible(true);
+	}
+
+	public String actualizarPersona(Persona miPersona) {
+		
+		return miPersonaDao.actualizarPersona(miPersona);
+	}
+
+	public void mostrarEliminarPersonas() {
+		miEliminarPersonasGui.limpiar();
+		miEliminarPersonasGui.setVisible(true);
+	}
+
+	public String eliminarPersona(Persona p) {
+		// TODO Auto-generated method stub
+		return miPersonaDao.eliminarPersona(p);
+	}
+
+	public void mostrarVentanaListarPersonas() {
+		miListarPersonasGui.setVisible(true);
+		miListarPersonasGui.vaciar();
+		miListarPersonasGui.llenar();
+	}
+	
+	public List listaPersonas() {
+		return miPersonaDao.consultarListaPersonas();
 	}
 
 }
